@@ -11,9 +11,9 @@ export default defineConfig({
   plugins: [
     semi({
       theme: "@semi-bot/semi-theme-yours",
-      options: {
-        // ...👆
-      },
+      // options: {
+      // ... 👆
+      //},
     }),
   ],
 });
