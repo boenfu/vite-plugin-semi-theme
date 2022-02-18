@@ -6,9 +6,6 @@
   "author": "boenfu <1997@boenfu.cn>",
   "license": "MIT",
   "private": false,
-  "peerDependencies": {
-    "vite": ">=2.0.0"
-  },
   "dependencies": {
     "sass": "^1.49.8"
   },

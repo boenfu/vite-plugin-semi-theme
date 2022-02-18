@@ -3,7 +3,6 @@ const Path = require("path");
 
 const { pathToFileURL } = require("url");
 
-const { normalizePath } = require("vite");
 const { compileString, Logger } = require("sass");
 
 /**
@@ -133,4 +132,10 @@ function convertMapToString(map) {
   return Object.keys(map).reduce(function (prev, curr) {
     return prev + `${curr}: ${map[curr]};\n`;
   }, "");
+}
+
+function normalizePath(id) {
+  return path.posix.normalize(
+    require("os").platform() === "win32" ? id.replace(/\\/g, "/") : id
+  );
 }
