@@ -1,0 +1,19 @@
+{
+  "name": "vite-plugin-semi-theme",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:boenfu/vite-plugin-semi-theme.git",
+  "author": "boenfu <1997@boenfu.cn>",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "vite": ">=2.0.0"
+  },
+  "dependencies": {
+    "sass": "^1.49.8"
+  },
+  "keywords": [
+    "vite-plugin",
+    "semi-ui"
+  ]
+}
