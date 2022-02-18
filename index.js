@@ -135,7 +135,7 @@ function convertMapToString(map) {
 }
 
 function normalizePath(id) {
-  return path.posix.normalize(
+  return Path.posix.normalize(
     require("os").platform() === "win32" ? id.replace(/\\/g, "/") : id
   );
 }
