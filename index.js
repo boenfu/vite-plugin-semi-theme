@@ -107,7 +107,7 @@ function loader(source, options) {
     try {
       const regex =
         /(@import '.\/variables.scss';?|@import ".\/variables.scss";?)/g;
-      const fileSplit = source.split(regex).filter((item) => Boolean(item));
+      const fileSplit = fileStr.split(regex).filter((item) => Boolean(item));
       if (fileSplit.length > 1) {
         fileSplit.splice(fileSplit.length - 1, 0, localImport);
         fileStr = fileSplit.join("");
