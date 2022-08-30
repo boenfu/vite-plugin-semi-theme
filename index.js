@@ -85,7 +85,7 @@ function loader(source, options) {
 
   const shouldInject = source.includes("semi-base");
 
-  let fileStr = source;
+  let fileStr = source.toString('utf8');
 
   let componentVariables;
 
