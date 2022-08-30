@@ -39,7 +39,7 @@ module.exports = function ({ theme, options = {} }) {
 
         return compileString(
           // TODO (boen): 未解析 file query
-          loader(FS.readFileSync(scssFilePath), {
+          loader(FS.readFileSync(scssFilePath, {encoding: 'utf8'}), {
             ...semiSemiLoaderOptions,
             ...options,
             variables: convertMapToString(options.variables || {}),
