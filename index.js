@@ -77,15 +77,15 @@ module.exports = function ({ theme, options = {} }) {
 
 // copy from https://github.com/DouyinFE/semi-design/blob/main/packages/semi-webpack/src/semi-theme-loader.ts
 function loader(source, options) {
+  let fileStr = source.toString("utf8");
+
   const theme = options.name || "@douyinfe/semi-theme-default";
   // always inject
   const scssVarStr = `@import "~${theme}/scss/index.scss";\n`;
   // inject once
   const cssVarStr = `@import "~${theme}/scss/global.scss";\n`;
 
-  const shouldInject = source.includes("semi-base");
-
-  let fileStr = source.toString('utf8');
+  const shouldInject = fileStr.includes("semi-base");
 
   let componentVariables;
 
