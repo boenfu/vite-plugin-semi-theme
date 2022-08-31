@@ -84,6 +84,14 @@ function loader(source, options) {
   const scssVarStr = `@import "~${theme}/scss/index.scss";\n`;
   // inject once
   const cssVarStr = `@import "~${theme}/scss/global.scss";\n`;
+  // [vite-plugin]: sync from https://github.com/DouyinFE/semi-design/commit/a6064489a683495a737cbe7abd72c0b49a3bcd06
+  let animationStr = `@import "~${theme}/scss/animation.scss";\n`;
+
+  try {
+    require.resolve(`${theme}/scss/animation.scss`);
+  } catch (e) {
+    animationStr = ""; // fallback to empty string
+  }
 
   const shouldInject = fileStr.includes("semi-base");
 
@@ -121,7 +129,7 @@ function loader(source, options) {
   const prefixClsStr = `$prefix: '${prefixCls}';\n`;
 
   if (shouldInject) {
-    return `${cssVarStr}${scssVarStr}${prefixClsStr}${fileStr}`;
+    return `${animationStr}${cssVarStr}${scssVarStr}${prefixClsStr}${fileStr}`;
   } else {
     return `${scssVarStr}${prefixClsStr}${fileStr}`;
   }
