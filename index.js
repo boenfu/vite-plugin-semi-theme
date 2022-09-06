@@ -26,7 +26,9 @@ module.exports = function ({ theme, options = {} }) {
     enforce: "post",
     load(id) {
       let filePath = normalizePath(id);
-
+      if (options.include){
+        options.include = normalizePath(options.include);
+      }
       // https://github.com/DouyinFE/semi-design/blob/main/packages/semi-webpack/src/semi-webpack-plugin.ts#L83
       if (
         /@douyinfe\/semi-(ui|icons|foundation)\/lib\/.+\.css$/.test(filePath)
