@@ -100,7 +100,7 @@ function loader(source, options) {
   let componentVariables;
 
   try {
-    componentVariables = resolve.sync(this.context, `${theme}/scss/local.scss`);
+    componentVariables = require.resolve(`${theme}/scss/local.scss`);
   } catch (e) {}
 
   if (options.include || options.variables || componentVariables) {
