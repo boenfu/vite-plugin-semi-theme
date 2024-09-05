@@ -10,8 +10,9 @@ const { compileString, Logger } = require("sass");
  *  theme: string;
  *  options?: {
  *    prefixCls?: string;
- *     variables?: {[key: string]: string | number};
+ *    variables?: {[key: string]: string | number};
  *    include?: string;
+ *    cssLayer?: boolean;
  *  };
  * })=>any}
  *
