@@ -10,8 +10,9 @@ const { compileString, Logger } = require("sass");
  *  theme: string;
  *  options?: {
  *    prefixCls?: string;
- *     variables?: {[key: string]: string | number};
+ *    variables?: {[key: string]: string | number};
  *    include?: string;
+ *    cssLayer?: boolean;
  *  };
  * })=>any}
  *
@@ -81,6 +82,8 @@ module.exports = function ({ theme, options = {} }) {
 function loader(source, options) {
   let fileStr = source.toString("utf8");
 
+  const cssLayer = options.cssLayer ?? false;
+
   const theme = options.name || "@douyinfe/semi-theme-default";
   // always inject
   const scssVarStr = `@import "~${theme}/scss/index.scss";\n`;
@@ -130,11 +133,19 @@ function loader(source, options) {
 
   const prefixClsStr = `$prefix: '${prefixCls}';\n`;
 
+  let finalCSS = '';
+
   if (shouldInject) {
-    return `${animationStr}${cssVarStr}${scssVarStr}${prefixClsStr}${fileStr}`;
+    finalCSS = `${animationStr}${cssVarStr}${scssVarStr}${prefixClsStr}${fileStr}`;
   } else {
-    return `${scssVarStr}${prefixClsStr}${fileStr}`;
+    finalCSS = `${scssVarStr}${prefixClsStr}${fileStr}`;
   }
+
+  if (cssLayer) {
+    finalCSS = `@layer semi{${finalCSS}}`;
+  }
+
+  return finalCSS;
 }
 
 // copy from https://github.com/DouyinFE/semi-design/blob/main/packages/semi-webpack/src/semi-webpack-plugin.ts#L136
